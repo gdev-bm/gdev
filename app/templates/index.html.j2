@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>gdev consulting | Bermudian full-stack software development</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="theme-color" content="#0090FF" />
+		<meta name="description" content="" />
+		<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;600;700&display=swap" rel="stylesheet"> 
+	</head>
+	<body>
+		<div id="content">
+			<header>
+				<div id="logo">
+					{{ icon('logo')|safe }}
+					gdev<span>consulting</span>
+				</div>
+				<a class="button secondary" href="mailto:info@gdev.bm">
+					{{ icon('mail')|safe }}
+					info@gdev.bm
+				</a>
+			</header>
+			<div id="splash">
+				<div id="splash-content">
+					<h1>Bermudian <b>full-stack</b><br>software development</h1>
+					<h4>Fill out the contact form for more information</h4>
+					<div class="row">
+						<div class="splash-item">
+							{{ icon('appstore')|safe }}
+							<span>Apps</span>
+						</div>
+						<div class="splash-item">
+							{{ icon('website')|safe }}
+							<span>Web Dev</span>
+						</div>
+						<div class="splash-item">
+							{{ icon('figma')|safe }}
+							<span>Design</span>
+						</div>
+						<div class="splash-item">
+							{{ icon('code')|safe }}
+							<span>Custom</span>
+						</div>
+					</div>
+				</div>
+				<form id="contact" method="POST">
+					<div class="row">
+						<div class="col">
+							<input name="name" autocomplete="name" placeholder="Name" required />
+							<input name="email" type="email" autocomplete="email" placeholder="Email" required />
+							<select name="interest">
+								<option value="" selected disabled hidden>Interest</option>
+								<option value="website">Website</option>
+								<option value="app">Mobile App</option>
+								<option value="enterprise">Enterprise</option>
+								<option value="design">Design</option>
+								<option value="other">Other</option>
+							</select>
+						</div>
+						<div class="col">
+							<textarea name="message" placeholder="Message" required></textarea>
+							<input type="submit" class="button" value="SUBMIT" />
+						</div>
+					</div>
+				</form>
+			</div>
+
+			<h3>SERVICES</h3>
+			<div id="services">
+				<div class="service-item">
+					<span>Web Development</span>
+					<ul>
+						<li>{{ icon('react')|safe }} React (TypeScript)</li>
+						<li>{{ icon('python')|safe }} Flask (Python)</li>
+					</ul>
+				</div>
+				<div class="service-item">
+					<span>Mobile Apps</span>
+					<ul>
+						<li>{{ icon('react')|safe }} React Native (all)</li>
+						<li>{{ icon('swift')|safe }} Swift (iOS)</li>
+					</ul>
+				</div>
+				<div class="service-item">
+					<span>Enterprise Software</span>
+					<ul>
+						<li>{{ icon('csharp')|safe }} C#, ASP.NET</li>
+						<li>{{ icon('github')|safe }} CI / CD</li>
+					</ul>
+				</div>
+				<div class="service-item">
+					<span>DevOps & Hosting</span>
+					<ul>
+						<li>{{ icon('heroku')|safe }} Heroku, AWS</li>
+						<li>{{ icon('maintinence')|safe }} Maintinence</li>
+					</ul>
+				</div>
+				<div class="service-item">
+					<span>UI / UX Design</span>
+					<ul>
+						<li>{{ icon('figma')|safe }} UI prototypes</li>
+						<li>{{ icon('mapbox')|safe }} Interactive maps</li>
+					</ul>
+				</div>
+				<div class="service-item">
+					<span>Services</span>
+					<ul>
+						<li>{{ icon('payment')|safe }} Payment Gateways</li>
+						<li>{{ icon('twilio')|safe }} SMS & Email</li>
+					</ul>
+				</div>
+			</div>
+
+			<h3>PROJECTS</h3>
+			<div id="projects">
+				<a class="project-item" href="https://www.scootermart.bm" target="_blank">
+					<img src="{{ url_for('static', filename='scootermart.png') }}" />
+					<div class="row">
+						<img src="{{ url_for('static', filename='scootermart-logo.png') }}" />
+						<b>Scooter Mart</b>
+						<span>scootermart.bm {{ icon('external')|safe }}</span>
+					</div>
+					<p>Online checkout for bike dealership</p>
+				</a>
+				<a class="project-item" href="https://www.healthiq.bm" target="_blank">
+					<img src="{{ url_for('static', filename='healthiq.png') }}" />
+					<div class="row">
+						<img src="{{ url_for('static', filename='healthiq-logo.png') }}" />
+						<b>HealthIQ</b>
+						<span>healthiq.bm {{ icon('external')|safe }}</span>
+					</div>
+					<p>A community symptom tracker for COVID-19</p>
+				</a>
+			</div>
+
+			<h3>TESTIMONIALS</h3>
+			<div id="testimonials">
+
+			</div>
+
+			<div id="code">
+
+			</div>
+
+			<footer>
+
+			</footer>
+		</div>
+	</body>
+</html>
