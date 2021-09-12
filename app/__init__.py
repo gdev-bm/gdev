@@ -1,15 +1,8 @@
 import os
 import datetime
 from config import Config
-# from werkzeug.contrib.fixers import ProxyFix
 from flask import Flask
-from flask_sqlalchemy import SQLAlchemy
-from flask_migrate import Migrate
 from jinja2 import select_autoescape
-
-
-db = SQLAlchemy()
-migrate = Migrate()
 
 
 def create_app(cfg=Config):
@@ -17,8 +10,6 @@ def create_app(cfg=Config):
 	application.config.from_object(cfg)
 
 	init_app(application)
-	db.init_app(application)
-	migrate.init_app(application, db)
 
 	# application.wsgi_app = ProxyFix(application.wsgi_app, num_proxies=1)
 	
@@ -47,7 +38,7 @@ def create_app(cfg=Config):
 def init_app(app):
 	@app.shell_context_processor
 	def shell_context():
-		return { 'app': app, 'db': db }
+		return { 'app': app }
 
 	@app.context_processor
 	def inject_variables():
@@ -58,6 +49,3 @@ def init_app(app):
 	@app.after_request
 	def after_request(response):
 		return response
-
-
-from app.models import *
