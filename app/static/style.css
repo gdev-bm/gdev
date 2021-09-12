@@ -109,26 +109,29 @@ header {
 	display: flex;
 	flex-direction: row;
 	align-items: center;
-	padding: 24px 0;
 	border-bottom: 2px solid var(--color-border);
 	position: fixed;
 	top: 0;
 	left: 24px;
 	right: 24px;
 	background-color: #0F1113;
+	z-index: 420;
 }
 
 header > .row {
 	max-width: 1100px;
 	margin: 0 auto;
 	width: 100%;
+	flex-wrap: wrap;
+	padding: 12px 0;
 }
 
 header .button {
-	margin-left: auto;
+	margin: 12px 10px 12px auto;
 }
 
 #logo {
+	margin: 12px 0 12px 10px;
 	font-size: 24px;
 	font-weight: 600;
 	display: flex;
@@ -152,7 +155,8 @@ header .button {
 }
 
 #splash-content {
-	margin-right: auto;
+	max-width: 100%;
+	margin: 0 10px;
 }
 
 #splash-content h1 {
@@ -168,6 +172,10 @@ header .button {
 	margin: 12px 0 32px 0;
 }
 
+#splash-content > .row {
+	margin: -10px 0 0 -10px;
+}
+
 .splash-item {
 	width: 100px;
 	height: 100px;
@@ -176,7 +184,7 @@ header .button {
 	align-items: center;
 	justify-content: center;
 	border-radius: 10px;
-	margin-right: 20px;
+	margin: 10px;
 	background-color: var(--color-background);
 }
 
@@ -189,7 +197,7 @@ header .button {
 }
 
 #contact {
-	margin-top: 12px;
+	margin: 12px 10px 0 auto;
 }
 
 #contact input, #contact textarea, #contact select {
@@ -240,6 +248,7 @@ header .button {
 }
 
 .project-item {
+	box-sizing: border-box;
 	text-decoration: none;
 	color: white;
 	max-width: 450px;
@@ -258,6 +267,7 @@ header .button {
 .project-item .row {
 	padding: 12px 16px;
 	align-items: center;
+	flex-wrap: wrap;
 }
 
 .project-item .row img {
@@ -283,6 +293,42 @@ header .button {
 	padding: 0 16px 24px 16px;
 }
 
+#testimonials {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+}
+
+.testimonial-item {
+	box-sizing: border-box;
+	margin: 10px;
+	max-width: 450px;
+	width: 100%;
+	text-decoration: none;
+	padding: 16px;
+}
+
+.testimonial-item > .row {
+	align-items: center;
+}
+
+.testimonial-person {
+	margin-left: 16px;
+	color: white;
+	display: flex;
+	flex-direction: column;
+}
+
+.testimonial-person span:last-child {
+	color: var(--color-text3);
+}
+
+.testimonial-item p {
+	font-size: 14px;
+	color: white;
+	margin-bottom: 0;
+}
+
 footer {
 	display: flex;
 	flex-direction: row;
@@ -294,12 +340,32 @@ footer {
 	color: var(--color-text2);
 }
 
-@media(max-width: 900px) {
+@media(max-width: 1000px) {
+	#splash-content {
+		text-align: center;
+		width: 100%;
+	}
+
+	#splash-content > .row {
+		justify-content: center;
+		flex-wrap: wrap;
+	}
+
+	#contact {
+		margin-left: 10px;
+	}
+
 	h3 {
 		text-align: center;
 	}
 
-	#services, #projects {
+	#services, #projects, #testimonials {
 		justify-content: center;
+	}
+}
+
+@media(max-width: 525px) {
+	#splash {
+		margin-top: 200px;
 	}
 }
