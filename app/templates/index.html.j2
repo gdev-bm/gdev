@@ -53,17 +53,20 @@
 						<div class="col">
 							<input name="name" autocomplete="name" placeholder="Name" value="{{ form.name.data }}" required />
 							<input name="email" type="email" autocomplete="email" placeholder="Email" value="{{ form.email.data }}" required />
-							<select name="interest">
-								<option value="" selected disabled hidden>Interest</option>
-								<option value="website">Website</option>
-								<option value="app">Mobile App</option>
-								<option value="enterprise">Enterprise</option>
-								<option value="design">Design</option>
-								<option value="other">Other</option>
-							</select>
+							<div class="select-container">
+								<select name="interest">
+									<option value="" selected disabled hidden>Interest</option>
+									<option value="website">Website</option>
+									<option value="app">Mobile App</option>
+									<option value="enterprise">Enterprise</option>
+									<option value="design">Design</option>
+									<option value="other">Other</option>
+								</select>
+								{{ icon('arrow')|safe }}
+							</div>
 						</div>
 						<div class="col">
-							<textarea name="message" placeholder="Message" required>{{ form.message.data }}</textarea>
+							<textarea name="message" placeholder="Message" style="height: 98px" required>{{ form.message.data }}</textarea>
 							<input type="submit" class="button" value="SUBMIT" />
 						</div>
 					</div>
@@ -169,7 +172,7 @@
 
 			<footer>
 				<span>gdev consulting ltd. &copy; {{ now.year }}</span>
-				<span style="margin-left: auto">Made in Bermuda 🇧🇲</span>
+				<span>Made in Bermuda 🇧🇲</span>
 			</footer>
 		</div>
 	</body>
