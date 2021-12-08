@@ -1,7 +1,7 @@
 import os
 import datetime
 from config import Config
-from flask import Flask
+from flask import Flask, request, redirect
 from jinja2 import select_autoescape
 
 
