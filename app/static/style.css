@@ -1,7 +1,7 @@
 :root {
 	--color-blue: #0090FF;
 	--color-blue-20: #0C2A42;
-	--color-background: #1D1D1D;
+	--color-background: #0F1113;
 	--color-background-highlight: #292929;
 	--color-border: #4D4D4D;
 	--color-border-highlight: #888888;
@@ -136,7 +136,7 @@ header {
 	top: 0;
 	left: 0;
 	right: 0;
-	background-color: #0F1113;
+	background-color: var(--color-background);
 	z-index: 420;
 	padding: 0 24px;
 }
