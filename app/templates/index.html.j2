@@ -100,10 +100,10 @@
 					</ul>
 				</div>
 				<div class="service-item card">
-					<span>Enterprise Software</span>
+					<span>Enterprise</span>
 					<ul>
 						<li>{{ icon('csharp')|safe }} C#, ASP.NET</li>
-						<li>{{ icon('github')|safe }} CI / CD</li>
+						<li>{{ icon('github')|safe }} GitHub</li>
 					</ul>
 				</div>
 				<div class="service-item card">
@@ -131,6 +131,15 @@
 
 			<h3>PROJECTS</h3>
 			<div id="projects">
+				<a class="project-item card" href="https://www.healthiq.bm" target="_blank">
+					<img src="{{ url_for('static', filename='fittofly.png') }}" />
+					<div class="row">
+						<img src="{{ url_for('static', filename='healthiq-logo.png') }}" />
+						<b>HealthIQ Fit to Fly</b>
+						<span>healthiq.bm {{ icon('external')|safe }}</span>
+					</div>
+					<p>A COVID-19 antigen test reservation system</p>
+				</a>
 				<a class="project-item card" href="https://www.scootermart.bm" target="_blank">
 					<img src="{{ url_for('static', filename='scootermart.png') }}" />
 					<div class="row">
@@ -140,12 +149,12 @@
 					</div>
 					<p>Online checkout for bike dealership</p>
 				</a>
-				<a class="project-item card" href="https://www.healthiq.bm" target="_blank">
+				<a class="project-item card" href="https://covid.healthiq.bm" target="_blank">
 					<img src="{{ url_for('static', filename='healthiq.png') }}" />
 					<div class="row">
 						<img src="{{ url_for('static', filename='healthiq-logo.png') }}" />
-						<b>HealthIQ</b>
-						<span>healthiq.bm {{ icon('external')|safe }}</span>
+						<b>CovidIQ</b>
+						<span>covid.healthiq.bm {{ icon('external')|safe }}</span>
 					</div>
 					<p>A community symptom tracker for COVID-19</p>
 				</a>
@@ -153,24 +162,23 @@
 
 			<h3>TESTIMONIALS</h3>
 			<div id="testimonials">
-				<!--<div class="testimonial-item card">
+				<div class="testimonial-item card">
 					<div class="row">
-						<img src="{{ url_for('static', filename='nickthompson.png') }}" />
+						<img src="{{ url_for('static', filename='nickthomson.png') }}" width="50" />
 						<div class="testimonial-person">
 							<span>Nick Thomson</span>
-							<span>Scooter Mart Owner</span>
+							<span>ScooterMart Owner</span>
 						</div>
 					</div>
-					<p></p>
-				</div>-->
+					<p>Gabriel is a great guy and he was phenomenal to work with. I highly recommend Gabriel & gdev to anyone looking for high-quality website design and app development work, at an affordable price!</p>
+				</div>
 				<a class="testimonial-item card" href="https://twitter.com/BermudaPremier/status/1256333930287919105" target="_blank">
 					<div class="row">
-						<img src="{{ url_for('static', filename='davidburt.png') }}" />
+						<img src="{{ url_for('static', filename='davidburt.png') }}" width="50" />
 						<div class="testimonial-person">
 							<span>David Burt</span>
 							<span>Bermuda Premier</span>
 						</div>
-						
 					</div>
 					<p>The @BDAHealth launched a new online health monitoring tool called HealthIQ. The new tool will help us to track symptoms based on #COVID19 criteria. Mr. Gabriel Jones and Mr. Lee McArthur are to be commended for their work in designing the app. http://HealthIQ.bm -DB</p>
 				</a>
