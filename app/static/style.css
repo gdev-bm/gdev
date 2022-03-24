@@ -1,6 +1,7 @@
 :root {
 	--color-blue: #0090FF;
 	--color-blue-20: #0C2A42;
+	--color-red: #E92D3B;
 	--color-background: #0F1113;
 	--color-background-highlight: #1B1D1F;
 	--color-border: #4D4D4D;
@@ -304,6 +305,10 @@ header .button {
 	display: flex;
 	flex-direction: row;
 	align-items: center;
+}
+
+.project-item .row span.offline {
+	color: var(--color-red);
 }
 
 .project-item .row span svg {
