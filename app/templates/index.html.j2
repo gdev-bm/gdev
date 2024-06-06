@@ -1,64 +1,78 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<title>gdev consulting | Bermudian full-stack software development</title>
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<meta name="theme-color" content="#0090FF" />
-		<meta name="description" content="gdev is a full-stack software development company based in Bermuda. We specialize in websites, mobile apps, UI/UX design, enterprise financial software, and more." />
-		<link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" />
-		<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-		<link rel="preconnect" href="https://fonts.googleapis.com">
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-		<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;600;700&display=swap" rel="stylesheet"> 
+  <head>
+    <title>gdev consulting | Bermudian full-stack software development</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#0090FF" />
+    <meta
+      name="description"
+      content="gdev is a full-stack software development company based in Bermuda. We specialize in websites, mobile apps, UI/UX design, enterprise financial software, and more."
+    />
+    <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
 
-		<!-- Global site tag (gtag.js) - Google Analytics -->
-		<script async src="https://www.googletagmanager.com/gtag/js?id=G-FC51LEJNF7"></script>
-		<script>
-			window.dataLayer = window.dataLayer || [];
-			function gtag(){dataLayer.push(arguments);}
-			gtag('js', new Date());
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-FC51LEJNF7"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
 
-			gtag('config', 'G-FC51LEJNF7');
-		</script>
-	</head>
-	<body>
-		<div id="content">
-			<header>
-				<div class="row">
-					<div id="logo">
-						{{ icon('logo')|safe }}
-						gdev<span>consulting</span>
-					</div>
-					<a class="button secondary" href="mailto:gabrieljones2@icloud.com">
-						{{ icon('mail')|safe }}
-						contact
-					</a>
-				</div>
-			</header>
-			<div id="splash">
-				<div id="splash-content">
-					<h1>Bermudian <b>full-stack</b><br>software development</h1>
-					<h4></h4>
-					<div class="row">
-						<div class="splash-item card">
-							{{ icon('website')|safe }}
-							<span>Web Dev</span>
-						</div>
-						<div class="splash-item card">
-							{{ icon('appstore')|safe }}
-							<span>Apps</span>
-						</div>
-						<div class="splash-item card">
-							{{ icon('figma')|safe }}
-							<span>Design</span>
-						</div>
-						<div class="splash-item card">
-							{{ icon('ai')|safe }}
-							<span>Enterprise</span>
-						</div>
-					</div>
-				</div>
-				<!--<form id="contact" method="POST">
+      gtag("config", "G-FC51LEJNF7");
+    </script>
+  </head>
+  <body>
+    <div id="content">
+      <header>
+        <div class="row">
+          <div id="logo">
+            {{ icon("logo") | safe }}
+            gdev<span>consulting</span>
+          </div>
+          <a class="button secondary" href="mailto:gabrieljones2@icloud.com">
+            {{ icon("mail") | safe }}
+            contact
+          </a>
+        </div>
+      </header>
+      <div id="splash">
+        <div id="splash-content">
+          <h1>Bermudian <b>full-stack</b><br />software development</h1>
+          <h4></h4>
+          <div class="row">
+            <div class="splash-item card">
+              {{ icon("website") | safe }}
+              <span>Web Dev</span>
+            </div>
+            <div class="splash-item card">
+              {{ icon("appstore") | safe }}
+              <span>Apps</span>
+            </div>
+            <div class="splash-item card">
+              {{ icon("figma") | safe }}
+              <span>Design</span>
+            </div>
+            <div class="splash-item card">
+              {{ icon("ai") | safe }}
+              <span>Enterprise</span>
+            </div>
+          </div>
+        </div>
+        <!--<form id="contact" method="POST">
 					<div class="row">
 						<div class="col">
 							<input name="name" autocomplete="name" placeholder="Name" value="{{ form.name.data }}" required />
@@ -81,117 +95,150 @@
 						</div>
 					</div>
 				</form>-->
-			</div>
+      </div>
 
-			<h3>TECH STACK</h3>
-			<div id="services">
-				<div class="service-item card">
-					<span>Frontend</span>
-					<ul>
-						<li>{{ icon('react')|safe }} React (TypeScript)</li>
-						<li>{{ icon('d3')|safe }} Data Viz (d3.js)</li>
-					</ul>
-				</div>
-				<div class="service-item card">
-					<span>Mobile</span>
-					<ul>
-						<li>{{ icon('expo')|safe }} Expo (React Native)</li>
-						<li>{{ icon('swift')|safe }} Swift (iOS)</li>
-					</ul>
-				</div>
-				<div class="service-item card">
-					<span>Backend</span>
-					<ul>
-						<li>{{ icon('csharp')|safe }} ASP.NET (C#)</li>
-						<li>{{ icon('python')|safe }} Flask (Python)</li>
-					</ul>
-				</div>
-				<div class="service-item card">
-					<span>DevOps & CI/CD</span>
-					<ul>
-						<li>{{ icon('aws')|safe }} AWS, Heroku</li>
-						<li>{{ icon('github')|safe }} GitHub</li>
-					</ul>
-				</div>
-				<div class="service-item card">
-					<span>UI / UX Design</span>
-					<ul>
-						<li>{{ icon('figma')|safe }} 1:1 Prototypes</li>
-						<li>{{ icon('mapbox')|safe }} Interactive maps</li>
-					</ul>
-				</div>
-				<div class="service-item card">
-					<span>Document Comprehension</span>
-					<ul>
-						<li>{{ icon('ai')|safe }} AWS Comprehend</li>
-						<li>{{ icon('neuralnet')|safe }} AWS Textract</li>
-					</ul>
-				</div>
-			</div>
+      <h3>TECH STACK</h3>
+      <div id="services">
+        <div class="service-item card">
+          <span>Frontend</span>
+          <ul>
+            <li>{{ icon("react") | safe }} React (TypeScript)</li>
+            <li>{{ icon("d3") | safe }} Data Viz (d3.js)</li>
+          </ul>
+        </div>
+        <div class="service-item card">
+          <span>Mobile</span>
+          <ul>
+            <li>{{ icon("expo") | safe }} Expo (React Native)</li>
+            <li>{{ icon("swift") | safe }} Swift (iOS)</li>
+          </ul>
+        </div>
+        <div class="service-item card">
+          <span>Backend</span>
+          <ul>
+            <li>{{ icon("csharp") | safe }} ASP.NET (C#)</li>
+            <li>{{ icon("python") | safe }} Flask (Python)</li>
+          </ul>
+        </div>
+        <div class="service-item card">
+          <span>DevOps & CI/CD</span>
+          <ul>
+            <li>{{ icon("aws") | safe }} AWS, Heroku</li>
+            <li>{{ icon("github") | safe }} GitHub</li>
+          </ul>
+        </div>
+        <div class="service-item card">
+          <span>UI / UX Design</span>
+          <ul>
+            <li>{{ icon("figma") | safe }} 1:1 Prototypes</li>
+            <li>{{ icon("mapbox") | safe }} Interactive maps</li>
+          </ul>
+        </div>
+        <div class="service-item card">
+          <span>AI & ML</span>
+          <ul>
+            <li>{{ icon("ai") | safe }} GPTs</li>
+            <li>{{ icon("neuralnet") | safe }} Fine-Tuning</li>
+          </ul>
+        </div>
+      </div>
 
-			<h3>PROJECTS</h3>
-			<div id="projects">
-				<a class="project-item card" href="https://www.healthiq.bm" target="_blank">
-					<img src="{{ url_for('static', filename='fittofly.png') }}" />
-					<div class="row">
-						<img src="{{ url_for('static', filename='healthiq-logo.png') }}" />
-						<b>HealthIQ Fit to Fly</b>
-						<span>healthiq.bm {{ icon('external')|safe }}</span>
-					</div>
-					<p>2022 • A COVID-19 antigen test reservation system, created for the Bermuda Health Council</p>
-				</a>
-				<a class="project-item card">
-					<img src="{{ url_for('static', filename='scootermart.png') }}" />
-					<div class="row">
-						<img src="{{ url_for('static', filename='scootermart-logo.png') }}" />
-						<b>Scooter Mart</b>
-						<span class="offline">Offline</span>
-					</div>
-					<p>2021 • Online checkout for local motorbike dealership with full e-commerce features.</p>
-				</a>
-				<a class="project-item card">
-					<img src="{{ url_for('static', filename='healthiq.png') }}" />
-					<div class="row">
-						<img src="{{ url_for('static', filename='healthiq-logo.png') }}" />
-						<b>CovidIQ</b>
-						<span class="offline">Offline</span>
-					</div>
-					<p>2020 • A community symptom tracker for COVID-19, in partnership with the Bermuda Government.</p>
-				</a>
-			</div>
+      <h3>PROJECTS</h3>
+      <div id="projects">
+        <a
+          class="project-item card"
+          href="https://www.healthiq.bm"
+          target="_blank"
+        >
+          <img src="{{ url_for('static', filename='fittofly.png') }}" />
+          <div class="row">
+            <img src="{{ url_for('static', filename='healthiq-logo.png') }}" />
+            <b>HealthIQ Fit to Fly</b>
+            <span>healthiq.bm {{ icon("external") | safe }}</span>
+          </div>
+          <p>
+            2022 • A COVID-19 antigen test reservation system, created for the
+            Bermuda Health Council
+          </p>
+        </a>
+        <a class="project-item card">
+          <img src="{{ url_for('static', filename='scootermart.png') }}" />
+          <div class="row">
+            <img
+              src="{{ url_for('static', filename='scootermart-logo.png') }}"
+            />
+            <b>Scooter Mart</b>
+            <span class="offline">Offline</span>
+          </div>
+          <p>
+            2021 • Online checkout for local motorbike dealership with full
+            e-commerce features.
+          </p>
+        </a>
+        <a class="project-item card">
+          <img src="{{ url_for('static', filename='healthiq.png') }}" />
+          <div class="row">
+            <img src="{{ url_for('static', filename='healthiq-logo.png') }}" />
+            <b>CovidIQ</b>
+            <span class="offline">Offline</span>
+          </div>
+          <p>
+            2020 • A community symptom tracker for COVID-19, in partnership with
+            the Bermuda Government.
+          </p>
+        </a>
+      </div>
 
-			<h3>TESTIMONIALS</h3>
-			<div id="testimonials">
-				<div class="testimonial-item card">
-					<div class="row">
-						<img src="{{ url_for('static', filename='nickthomson.png') }}" width="50" />
-						<div class="testimonial-person">
-							<span>Nick Thomson</span>
-							<span>ScooterMart Owner</span>
-						</div>
-					</div>
-					<p>Gabriel is a great guy and he was phenomenal to work with. I highly recommend Gabriel & gdev to anyone looking for high-quality website design and app development work.</p>
-				</div>
-				<a class="testimonial-item card" href="https://twitter.com/BermudaPremier/status/1256333930287919105" target="_blank">
-					<div class="row">
-						<img src="{{ url_for('static', filename='davidburt.png') }}" width="50" />
-						<div class="testimonial-person">
-							<span>David Burt</span>
-							<span>Bermuda Premier</span>
-						</div>
-					</div>
-					<p>The @BDAHealth launched a new online health monitoring tool called HealthIQ. The new tool will help us to track symptoms based on #COVID19 criteria. Mr. Gabriel Jones and Mr. Lee McArthur are to be commended for their work in designing the app. http://HealthIQ.bm -DB</p>
-				</a>
-			</div>
+      <h3>TESTIMONIALS</h3>
+      <div id="testimonials">
+        <div class="testimonial-item card">
+          <div class="row">
+            <img
+              src="{{ url_for('static', filename='nickthomson.png') }}"
+              width="50"
+            />
+            <div class="testimonial-person">
+              <span>Nick Thomson</span>
+              <span>ScooterMart Owner</span>
+            </div>
+          </div>
+          <p>
+            Gabriel is a great guy and he was phenomenal to work with. I highly
+            recommend Gabriel & gdev to anyone looking for high-quality website
+            design and app development work.
+          </p>
+        </div>
+        <a
+          class="testimonial-item card"
+          href="https://twitter.com/BermudaPremier/status/1256333930287919105"
+          target="_blank"
+        >
+          <div class="row">
+            <img
+              src="{{ url_for('static', filename='davidburt.png') }}"
+              width="50"
+            />
+            <div class="testimonial-person">
+              <span>David Burt</span>
+              <span>Bermuda Premier</span>
+            </div>
+          </div>
+          <p>
+            The @BDAHealth launched a new online health monitoring tool called
+            HealthIQ. The new tool will help us to track symptoms based on
+            #COVID19 criteria. Mr. Gabriel Jones and Mr. Lee McArthur are to be
+            commended for their work in designing the app. http://HealthIQ.bm
+            -DB
+          </p>
+        </a>
+      </div>
 
-			<div id="code">
+      <div id="code"></div>
 
-			</div>
-
-			<footer>
-				<span>gdev consulting ltd. &copy; {{ now.year }}</span>
-				<span>Made in Bermuda 🇧🇲</span>
-			</footer>
-		</div>
-	</body>
+      <footer>
+        <span>gdev consulting ltd. &copy; {{ now.year }}</span>
+        <span>Made in Bermuda 🇧🇲</span>
+      </footer>
+    </div>
+  </body>
 </html>
