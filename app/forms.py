@@ -1,7 +1,7 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, SelectField
 from wtforms.validators import DataRequired, Optional, Email
-from wtforms.fields.html5 import EmailField
+from wtforms.fields import EmailField
 
 class ContactForm(FlaskForm):
 	name = StringField('name', validators=[ Optional() ], default='')
