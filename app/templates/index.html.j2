@@ -160,14 +160,23 @@
       <div id="projects">
         <a
           class="project-item card"
-          href="https://www.healthiq.bm"
+          href="https://www.gdev.bm/mars"
           target="_blank"
         >
+          <img src="{{ url_for('static', filename='mars-game.png') }}" />
+          <div class="row">
+            <img src="{{ url_for('static', filename='mars-mini.png') }}" />
+            <b>Mars Game</b>
+            <span>gdev.bm/mars {{ icon("external") | safe }}</span>
+          </div>
+          <p>2025 • A vibe coding game, built with Cursor and Claude AI</p>
+        </a>
+        <a class="project-item card">
           <img src="{{ url_for('static', filename='fittofly.png') }}" />
           <div class="row">
             <img src="{{ url_for('static', filename='healthiq-logo.png') }}" />
             <b>HealthIQ Fit to Fly</b>
-            <span>healthiq.bm {{ icon("external") | safe }}</span>
+            <span class="offline">Offline</span>
           </div>
           <p>
             2022 • A COVID-19 antigen test reservation system, created for the
@@ -249,7 +258,26 @@
       <div id="code"></div>
 
       <footer>
-        <span>gdev consulting ltd. &copy; {{ now.year }}</span>
+        <span>
+          gdev consulting ltd. &copy; {{ now.year }}
+          <a class="social-media" href="https://x.com/gabe_bda" target="_blank">
+            {{ icon("x") | safe }}
+          </a>
+          <a
+            class="social-media"
+            href="https://github.com/gabriel-jones"
+            target="_blank"
+          >
+            {{ icon("github") | safe }}
+          </a>
+          <a
+            class="social-media"
+            href="https://www.linkedin.com/company/gdev-bm"
+            target="_blank"
+          >
+            {{ icon("linkedin") | safe }}
+          </a>
+        </span>
         <span>Made in Bermuda 🇧🇲</span>
       </footer>
     </div>
