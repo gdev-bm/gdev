@@ -15,8 +15,8 @@ def route():
 	return render_template('index.html.j2', form=form)
 
 
-@blueprint.route('/mars', methods=['GET'])
-def mars():
-	print("MARS HERE")
-	return send_from_directory('static/mars-game/public', 'index.html')
+@blueprint.route('/triangle', methods=['GET'])
+def triangle():
+	print("TRIANGLE HERE")
+	return render_template('triangle.html.j2')
 

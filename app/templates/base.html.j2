@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{% block title %}gdev consulting | Bermudian full-stack software development{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#0090FF" />
+    <meta
+      name="description"
+      content="{% block description %}gdev is a full-stack software development company based in Bermuda. We specialize in websites, mobile apps, UI/UX design, enterprise financial software, and more.{% endblock %}"
+    />
+    <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-FC51LEJNF7"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "G-FC51LEJNF7");
+    </script>
+    {% block extra_head %}{% endblock %}
+  </head>
+  <body>
+    <div id="content">
+      <header>
+        <div class="row">
+          <a id="logo" href="/">
+            {{ icon("logo") | safe }}
+            gdev<span>consulting</span>
+          </a>
+          <a class="button secondary" href="mailto:info@gdev.bm">
+            {{ icon("mail") | safe }}
+            contact
+          </a>
+        </div>
+      </header>
+      
+      {% block content %}{% endblock %}
+
+      <div id="code"></div>
+
+      <footer>
+        <span>
+          gdev consulting ltd. &copy; {{ now.year }}
+          <a class="social-media" href="https://x.com/gabe_bda" target="_blank">
+            {{ icon("x") | safe }}
+          </a>
+          <a
+            class="social-media"
+            href="https://github.com/gabriel-jones"
+            target="_blank"
+          >
+            {{ icon("github") | safe }}
+          </a>
+          <a
+            class="social-media"
+            href="https://www.linkedin.com/company/gdev-bm"
+            target="_blank"
+          >
+            {{ icon("linkedin") | safe }}
+          </a>
+        </span>
+        <span>Made in Bermuda 🇧🇲</span>
+      </footer>
+    </div>
+  </body>
+</html> 

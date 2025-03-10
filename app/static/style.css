@@ -171,6 +171,13 @@ header .button {
   display: flex;
   flex-direction: row;
   align-items: center;
+  color: white;
+  text-decoration: none;
+  transition: 0.15s;
+}
+
+#logo:hover {
+  filter: brightness(0.8);
 }
 
 #logo svg {

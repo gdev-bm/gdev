@@ -1,54 +1,6 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>gdev consulting | Bermudian full-stack software development</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#0090FF" />
-    <meta
-      name="description"
-      content="gdev is a full-stack software development company based in Bermuda. We specialize in websites, mobile apps, UI/UX design, enterprise financial software, and more."
-    />
-    <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" />
-    <link
-      rel="stylesheet"
-      href="{{ url_for('static', filename='style.css') }}"
-    />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
+{% extends "base.html.j2" %}
 
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script
-      async
-      src="https://www.googletagmanager.com/gtag/js?id=G-FC51LEJNF7"
-    ></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        dataLayer.push(arguments);
-      }
-      gtag("js", new Date());
-
-      gtag("config", "G-FC51LEJNF7");
-    </script>
-  </head>
-  <body>
-    <div id="content">
-      <header>
-        <div class="row">
-          <div id="logo">
-            {{ icon("logo") | safe }}
-            gdev<span>consulting</span>
-          </div>
-          <a class="button secondary" href="mailto:info@gdev.bm">
-            {{ icon("mail") | safe }}
-            contact
-          </a>
-        </div>
-      </header>
+{% block content %}
       <div id="splash">
         <div id="splash-content">
           <h1>Bermudian <b>full-stack</b><br />software development</h1>
@@ -160,14 +112,14 @@
       <div id="projects">
         <!--<a
           class="project-item card"
-          href="https://mars.gdev.bm"
+          href="/triangle"
           target="_blank"
         >
           <img src="{{ url_for('static', filename='') }}" />
           <div class="row">
             <img src="{{ url_for('static', filename='bermuda-app.svg') }}" />
-            <b>Bermuda</b>
-            <span>bermuda.gdev.bm {{ icon("external") | safe }}</span>
+            <b>Triangle</b>
+            <span>gdev.bm/triangle {{ icon("external") | safe }}</span>
           </div>
           <p>
             2025 • Bermuda's everything app
@@ -275,32 +227,4 @@
           </p>
         </a>
       </div>
-
-      <div id="code"></div>
-
-      <footer>
-        <span>
-          gdev consulting ltd. &copy; {{ now.year }}
-          <a class="social-media" href="https://x.com/gabe_bda" target="_blank">
-            {{ icon("x") | safe }}
-          </a>
-          <a
-            class="social-media"
-            href="https://github.com/gabriel-jones"
-            target="_blank"
-          >
-            {{ icon("github") | safe }}
-          </a>
-          <a
-            class="social-media"
-            href="https://www.linkedin.com/company/gdev-bm"
-            target="_blank"
-          >
-            {{ icon("linkedin") | safe }}
-          </a>
-        </span>
-        <span>Made in Bermuda 🇧🇲</span>
-      </footer>
-    </div>
-  </body>
-</html>
+{% endblock %}
