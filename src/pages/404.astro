@@ -1,0 +1,22 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Not found">
+  <section class="wrap">
+    <p class="label">404</p>
+    <h1>Nothing here.</h1>
+    <a class="btn" href="/">← All work</a>
+  </section>
+</Layout>
+
+<style>
+  section {
+    padding-block: 96px 160px;
+  }
+  h1 {
+    margin: 16px 0 32px;
+    font: 700 clamp(40px, 6vw, 72px) / 1 var(--mono);
+    letter-spacing: -0.04em;
+  }
+</style>
