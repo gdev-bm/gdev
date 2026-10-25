@@ -1,0 +1,27 @@
+---
+interface Props {
+  src: string;
+  poster?: string;
+  class?: string;
+  label: string;
+}
+const { src, poster, class: className, label } = Astro.props;
+---
+
+<video class={className} src={src} poster={poster} autoplay muted loop playsinline preload="metadata" aria-label={label}></video>
+
+<script>
+  // Autoplay is muted and decorative; honour reduced motion and pause loops that are off screen.
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const io = new IntersectionObserver((entries) => {
+    for (const { target, isIntersecting } of entries) {
+      const v = target as HTMLVideoElement;
+      if (isIntersecting && !reduce) v.play().catch(() => {});
+      else v.pause();
+    }
+  });
+  document.querySelectorAll<HTMLVideoElement>('video[autoplay]').forEach((v) => {
+    if (reduce) v.removeAttribute('autoplay');
+    io.observe(v);
+  });
+</script>

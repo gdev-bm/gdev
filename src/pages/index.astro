@@ -1,0 +1,242 @@
+---
+import { Image } from 'astro:assets';
+import Layout from '../layouts/Layout.astro';
+import VideoLoop from '../components/VideoLoop.astro';
+import Icon from '../components/Icon.astro';
+import { getProjects, poster, statusLabel } from '../lib/projects';
+
+const { featured, archive } = await getProjects();
+---
+
+<Layout>
+  <section class="wrap intro">
+    <h1>Games, real-time graphics<br />and software, made in&nbsp;Bermuda.</h1>
+  </section>
+
+  <section class="wrap featured" id="work">
+    {
+      featured.map((p, i) => (
+        <article class:list={['feature', { flip: i % 2 }]}>
+          <a class="media" href={`/${p.id}`}>
+            <VideoLoop src={p.data.video!} poster={poster(p)} label={`${p.data.title} gameplay`} />
+          </a>
+          <div class="body">
+            <div class="meta">
+              <span class="label">{p.data.year}</span>
+              <span class:list={['status', p.data.status]}>{statusLabel[p.data.status]}</span>
+            </div>
+            <h2>
+              <a href={`/${p.id}`}>{p.data.title}</a>
+            </h2>
+            <p class="tagline">{p.data.tagline}</p>
+            <p class="summary">{p.data.summary}</p>
+            <ul class="tags">
+              {p.data.tags.map((t) => (
+                <li>{t}</li>
+              ))}
+            </ul>
+            <div class="actions">
+              {p.data.links.play && (
+                <a class="btn primary" href={p.data.links.play}>
+                  Play <Icon name="external" />
+                </a>
+              )}
+              <a class="btn" href={`/${p.id}`}>
+                About
+              </a>
+            </div>
+          </div>
+        </article>
+      ))
+    }
+  </section>
+
+  <section class="wrap archive">
+    <h3 class="label">Earlier work</h3>
+    <div class="grid">
+      {
+        archive.map((p) => (
+          <a class="card" href={`/${p.id}`}>
+            <div class:list={['thumb', p.data.coverFit]}>
+              <Image src={p.data.cover} alt="" widths={[400, 800]} sizes="(min-width: 900px) 400px, 100vw" />
+            </div>
+            <div class="row">
+              {p.data.logo && <Image class="logo" src={p.data.logo} alt="" width={40} height={40} />}
+              <b>{p.data.title}</b>
+              <span class:list={['status', p.data.status]}>{p.data.year}</span>
+            </div>
+            <p>{p.data.tagline}</p>
+          </a>
+        ))
+      }
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .intro {
+    padding-block: 72px 88px;
+  }
+  h1 {
+    margin: 0;
+    font: 600 clamp(32px, 5vw, 60px) / 1.08 var(--mono);
+    letter-spacing: -0.03em;
+  }
+  .featured {
+    display: grid;
+    gap: 96px;
+  }
+  .feature {
+    display: grid;
+    grid-template-columns: 1.7fr 1fr;
+    gap: 48px;
+    align-items: center;
+  }
+  .feature.flip {
+    grid-template-columns: 1fr 1.7fr;
+  }
+  .feature.flip .media {
+    order: 2;
+  }
+  .media {
+    border-radius: var(--radius);
+    overflow: hidden;
+    border: 1px solid var(--line);
+    aspect-ratio: 16 / 9;
+    background: var(--bg-2);
+  }
+  .media :global(video) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s;
+  }
+  .media:hover :global(video) {
+    transform: scale(1.02);
+  }
+  .meta {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+  }
+  h2 {
+    margin: 14px 0 6px;
+    font: 700 44px/1 var(--mono);
+    letter-spacing: -0.03em;
+  }
+  .tagline {
+    margin: 0 0 16px;
+    color: var(--text);
+    font-size: 18px;
+  }
+  .summary {
+    margin: 0 0 20px;
+    color: var(--text-2);
+  }
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 0;
+    margin: 0 0 28px;
+    list-style: none;
+  }
+  .tags li {
+    font: 12px/1 var(--mono);
+    color: var(--text-2);
+    padding: 6px 9px;
+    border-radius: 6px;
+    background: var(--bg-2);
+    border: 1px solid var(--line);
+  }
+  .actions {
+    display: flex;
+    gap: 10px;
+  }
+  .archive {
+    margin-top: 140px;
+  }
+  .archive h3 {
+    margin: 0 0 24px;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  .card {
+    padding: 12px 12px 18px;
+    border-radius: var(--radius);
+    border: 1px solid var(--line);
+    background: var(--bg-2);
+    transition: 0.2s;
+  }
+  .card:hover {
+    border-color: var(--line-2);
+    transform: translateY(-2px);
+  }
+  .thumb {
+    aspect-ratio: 16 / 10;
+    border-radius: 6px;
+    overflow: hidden;
+    background: #1d2125;
+    margin-bottom: 16px;
+  }
+  .thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top;
+  }
+  .thumb.contain {
+    background: white;
+  }
+  .thumb.contain img {
+    object-fit: contain;
+    object-position: center;
+    padding: 12%;
+  }
+  .row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding-inline: 4px;
+  }
+  .row b {
+    font: 600 15px/1.2 var(--mono);
+  }
+  .row .status {
+    margin-left: auto;
+  }
+  .logo {
+    width: 20px;
+    height: 20px;
+    border-radius: 4px;
+  }
+  .card p {
+    margin: 8px 4px 0;
+    color: var(--text-2);
+    font-size: 14px;
+  }
+  @media (max-width: 900px) {
+    .feature,
+    .feature.flip {
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+    .feature.flip .media {
+      order: 0;
+    }
+    .grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+  @media (max-width: 600px) {
+    .grid {
+      grid-template-columns: 1fr;
+    }
+    h2 {
+      font-size: 36px;
+    }
+  }
+</style>

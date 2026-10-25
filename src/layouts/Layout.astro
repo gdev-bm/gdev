@@ -1,0 +1,198 @@
+---
+import '@fontsource-variable/inter';
+import '@fontsource-variable/jetbrains-mono';
+import Head from '../components/Head.astro';
+import Icon from '../components/Icon.astro';
+import { site } from '../lib/projects';
+
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+}
+---
+
+<html lang="en">
+  <head>
+    <Head {...Astro.props} />
+    <meta name="theme-color" content="#0d0f11" />
+  </head>
+  <body>
+    <header class="wrap top">
+      <a class="brand" href="/"><Icon name="logo" /> gdev</a>
+      <nav>
+        <a href="/#work">Work</a>
+        <a class="pill" href={`mailto:${site.email}`}><Icon name="mail" /> Email</a>
+      </nav>
+    </header>
+    <main>
+      <slot />
+    </main>
+    <footer class="wrap">
+      <span>gdev &copy; {new Date().getFullYear()} · Made in Bermuda 🇧🇲</span>
+      <span class="social">
+        <a href={site.social.x} aria-label="X"><Icon name="x" /></a>
+        <a href={site.social.github} aria-label="GitHub"><Icon name="github" /></a>
+        <a href={site.social.linkedin} aria-label="LinkedIn"><Icon name="linkedin" /></a>
+      </span>
+    </footer>
+  </body>
+</html>
+
+<style is:global>
+  :root {
+    --bg: #0d0f11;
+    --bg-2: #15181b;
+    --line: #262a2f;
+    --line-2: #3a4047;
+    --text: #e8eaec;
+    --text-2: #a3a9b0;
+    --text-3: #6d747c;
+    --blue: #0090ff;
+    --amber: #ffb547;
+    --red: #ff5a5f;
+    --mono: 'JetBrains Mono Variable', ui-monospace, monospace;
+    --sans: 'Inter Variable', system-ui, sans-serif;
+    --radius: 10px;
+    color-scheme: dark;
+  }
+  * {
+    box-sizing: border-box;
+  }
+  html {
+    background: var(--bg);
+    color: var(--text);
+    font: 16px/1.6 var(--sans);
+    -webkit-font-smoothing: antialiased;
+  }
+  body {
+    margin: 0;
+  }
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+  img,
+  video {
+    display: block;
+    max-width: 100%;
+  }
+  .icon {
+    width: 1em;
+    height: 1em;
+    flex: none;
+  }
+  .wrap {
+    width: min(1240px, 100% - 48px);
+    margin-inline: auto;
+  }
+  .mono {
+    font-family: var(--mono);
+  }
+  .label {
+    font: 500 12px/1 var(--mono);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-3);
+  }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 16px;
+    border-radius: 8px;
+    font: 600 14px/1 var(--mono);
+    border: 1px solid var(--line-2);
+    transition: 0.15s;
+  }
+  .btn:hover {
+    border-color: var(--text-2);
+  }
+  .btn.primary {
+    background: var(--blue);
+    border-color: var(--blue);
+    color: white;
+  }
+  .btn.primary:hover {
+    filter: brightness(1.1);
+  }
+  .status {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font: 500 12px/1 var(--mono);
+    color: var(--text-2);
+  }
+  .status::before {
+    content: '';
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #3ecf8e;
+  }
+  .status.in-development::before {
+    background: var(--amber);
+  }
+  .status.offline::before {
+    background: var(--text-3);
+  }
+  .status.ongoing::before {
+    background: var(--blue);
+  }
+</style>
+
+<style>
+  .top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-block: 28px;
+  }
+  .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font: 700 20px/1 var(--mono);
+  }
+  .brand :global(.icon) {
+    width: 26px;
+    height: 26px;
+    color: var(--blue);
+  }
+  nav {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    font: 500 14px/1 var(--mono);
+    color: var(--text-2);
+  }
+  nav a:hover {
+    color: var(--text);
+  }
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 9px 14px;
+    border: 1px solid var(--line-2);
+    border-radius: 999px;
+  }
+  footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-block: 40px 56px;
+    margin-top: 96px;
+    border-top: 1px solid var(--line);
+    font: 13px/1 var(--mono);
+    color: var(--text-3);
+  }
+  .social {
+    display: flex;
+    gap: 18px;
+    font-size: 18px;
+  }
+  .social a:hover {
+    color: var(--text);
+  }
+</style>

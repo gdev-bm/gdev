@@ -1,0 +1,17 @@
+---
+const icons = import.meta.glob<string>(['../icons/*.svg', '../assets/logo.svg'], { query: '?raw', import: 'default', eager: true });
+
+interface Props {
+  name: 'github' | 'x' | 'linkedin' | 'external' | 'mail' | 'arrow' | 'logo';
+  class?: string;
+}
+const { name, class: className } = Astro.props;
+const raw = icons[name === 'logo' ? '../assets/logo.svg' : `../icons/${name}.svg`];
+const root = raw.match(/<svg[^>]*>/)![0];
+let svg = raw.replace(root, root.replace(/\s(width|height)="[^"]*"/g, '').replace('<svg', `<svg aria-hidden="true" class="icon ${className ?? ''}"`));
+if (name !== 'logo') {
+  svg = svg.replace(/fill="(?!none)[^"]*"/g, 'fill="currentColor"').replace(/stroke="(?!none)[^"]*"/g, 'stroke="currentColor"');
+}
+---
+
+<Fragment set:html={svg} />

@@ -1,0 +1,221 @@
+---
+import { Image } from 'astro:assets';
+import { render } from 'astro:content';
+import Layout from '../layouts/Layout.astro';
+import VideoLoop from '../components/VideoLoop.astro';
+import Icon from '../components/Icon.astro';
+import { getProjects, hostOf, poster, statusLabel, type Project } from '../lib/projects';
+
+export async function getStaticPaths() {
+  const { all } = await getProjects();
+  return all.map((p, i) => ({ params: { slug: p.id }, props: { p, next: all[(i + 1) % all.length] } }));
+}
+
+const { p, next } = Astro.props as { p: Project; next: Project };
+const { Content } = await render(p);
+const d = p.data;
+---
+
+<Layout title={d.title} description={d.summary} image={poster(p)}>
+  <article class="wrap">
+    <a class="back label" href="/">← All work</a>
+    <header>
+      <div class="meta">
+        <span class="label">{d.year}</span>
+        <span class:list={['status', d.status]}>{statusLabel[d.status]}</span>
+      </div>
+      <h1>{d.title}</h1>
+      <p class="tagline">{d.tagline}</p>
+      <div class="actions">
+        {
+          d.links.play && (
+            <a class="btn primary" href={d.links.play}>
+              Play {hostOf(d.links.play)} <Icon name="external" />
+            </a>
+          )
+        }
+        {
+          d.links.site && (
+            <a class="btn primary" href={d.links.site}>
+              {hostOf(d.links.site)} <Icon name="external" />
+            </a>
+          )
+        }
+        {
+          d.links.source && (
+            <a class="btn" href={d.links.source}>
+              <Icon name="github" /> Source
+            </a>
+          )
+        }
+      </div>
+      {d.requires && <p class="requires mono">Requires {d.requires}</p>}
+    </header>
+
+    <div class:list={['hero', d.coverFit]}>
+      {
+        d.video ? (
+          <VideoLoop src={d.video} poster={poster(p)} label={`${d.title} gameplay`} />
+        ) : (
+          <Image src={d.cover} alt="" widths={[800, 1600]} sizes="(min-width: 1240px) 1240px, 100vw" />
+        )
+      }
+    </div>
+
+    <div class="body">
+      <aside>
+        <dl>
+          <dt class="label">Year</dt>
+          <dd>{d.year}</dd>
+          <dt class="label">Status</dt>
+          <dd>{statusLabel[d.status]}</dd>
+          <dt class="label">Built with</dt>
+          <dd>{d.tags.join(', ')}</dd>
+        </dl>
+      </aside>
+      <div class="prose"><Content /></div>
+    </div>
+
+    {
+      d.gallery.length > 0 && (
+        <div class="gallery">
+          {d.gallery.map((g) => (
+            <Image src={g.src} alt={g.alt} widths={[600, 1200]} sizes="(min-width: 900px) 600px, 100vw" />
+          ))}
+        </div>
+      )
+    }
+
+    <a class="next" href={`/${next.id}`}>
+      <span class="label">Next</span>
+      <span class="title">{next.data.title} →</span>
+    </a>
+  </article>
+</Layout>
+
+<style>
+  .back {
+    display: inline-block;
+    margin: 24px 0 40px;
+  }
+  .back:hover {
+    color: var(--text);
+  }
+  .meta {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+  }
+  h1 {
+    margin: 16px 0 10px;
+    font: 700 clamp(44px, 7vw, 88px) / 1 var(--mono);
+    letter-spacing: -0.04em;
+  }
+  .tagline {
+    margin: 0 0 28px;
+    font-size: 20px;
+    color: var(--text-2);
+  }
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .requires {
+    margin: 14px 0 0;
+    font-size: 12px;
+    color: var(--text-3);
+  }
+  .hero {
+    margin-top: 48px;
+    border-radius: var(--radius);
+    overflow: hidden;
+    border: 1px solid var(--line);
+    aspect-ratio: 16 / 9;
+    background: var(--bg-2);
+  }
+  .hero :global(video),
+  .hero img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top;
+  }
+  .hero.contain {
+    background: white;
+  }
+  .hero.contain img {
+    object-fit: contain;
+    object-position: center;
+    padding: 10%;
+  }
+  .body {
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    gap: 64px;
+    margin-top: 64px;
+  }
+  dl {
+    margin: 0;
+    display: grid;
+    gap: 6px;
+  }
+  dd {
+    margin: 0 0 18px;
+    font: 14px/1.4 var(--mono);
+    color: var(--text-2);
+  }
+  .prose {
+    max-width: 68ch;
+    font-size: 17px;
+    color: var(--text-2);
+  }
+  .prose :global(p:first-child) {
+    margin-top: 0;
+    color: var(--text);
+    font-size: 20px;
+    line-height: 1.5;
+  }
+  .prose :global(strong) {
+    color: var(--text);
+  }
+  .prose :global(li) {
+    margin-bottom: 10px;
+  }
+  .gallery {
+    margin-top: 64px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  .gallery img {
+    width: 100%;
+    height: auto;
+    border-radius: var(--radius);
+    border: 1px solid var(--line);
+  }
+  .next {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 96px;
+    padding-top: 40px;
+    border-top: 1px solid var(--line);
+  }
+  .next .title {
+    font: 700 clamp(28px, 4vw, 48px) / 1 var(--mono);
+    letter-spacing: -0.03em;
+  }
+  .next:hover .title {
+    color: var(--blue);
+  }
+  @media (max-width: 800px) {
+    .body {
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+    .gallery {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
