@@ -17,7 +17,7 @@ const { featured, archive } = await getProjects();
     {
       featured.map((p, i) => (
         <article class:list={['feature', { flip: i % 2 }]}>
-          <a class="media" href={`/${p.id}`}>
+          <a class="media" href={`/${p.id}/`}>
             <VideoLoop src={p.data.video!} poster={poster(p)} label={`${p.data.title} gameplay`} />
           </a>
           <div class="body">
@@ -26,7 +26,7 @@ const { featured, archive } = await getProjects();
               <span class:list={['status', p.data.status]}>{statusLabel[p.data.status]}</span>
             </div>
             <h2>
-              <a href={`/${p.id}`}>{p.data.title}</a>
+              <a href={`/${p.id}/`}>{p.data.title}</a>
             </h2>
             <p class="tagline">{p.data.tagline}</p>
             <p class="summary">{p.data.summary}</p>
@@ -41,7 +41,7 @@ const { featured, archive } = await getProjects();
                   Play <Icon name="external" />
                 </a>
               )}
-              <a class="btn" href={`/${p.id}`}>
+              <a class="btn" href={`/${p.id}/`}>
                 About
               </a>
             </div>
@@ -56,7 +56,7 @@ const { featured, archive } = await getProjects();
     <div class="grid">
       {
         archive.map((p) => (
-          <a class="card" href={`/${p.id}`}>
+          <a class="card" href={`/${p.id}/`}>
             <div class:list={['thumb', p.data.coverFit]}>
               <Image src={p.data.cover} alt="" widths={[400, 800]} sizes="(min-width: 900px) 400px, 100vw" />
             </div>

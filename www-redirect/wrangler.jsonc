@@ -1,0 +1,7 @@
+{
+  "name": "gdev-www",
+  "main": "index.js",
+  "compatibility_date": "2026-10-01",
+  "workers_dev": false,
+  "routes": [{ "pattern": "www.gdev.bm", "custom_domain": true }]
+}
