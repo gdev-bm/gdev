@@ -55,19 +55,26 @@ const { featured, archive } = await getProjects();
     <h3 class="label">Earlier work</h3>
     <div class="grid">
       {
-        archive.map((p) => (
-          <a class="card" href={`/${p.id}/`}>
-            <div class:list={['thumb', p.data.coverFit]}>
-              <Image src={p.data.cover} alt="" widths={[400, 800]} sizes="(min-width: 900px) 400px, 100vw" />
-            </div>
-            <div class="row">
-              {p.data.logo && <Image class="logo" src={p.data.logo} alt="" width={40} height={40} />}
-              <b>{p.data.title}</b>
-              <span class:list={['status', p.data.status]}>{p.data.year}</span>
-            </div>
-            <p>{p.data.tagline}</p>
-          </a>
-        ))
+        archive.map((p) => {
+          const href = p.data.links.play ?? p.data.links.site ?? p.data.links.source;
+          const Card = href ? 'a' : 'div';
+          return (
+            <Card class="card" href={href}>
+              <div class:list={['thumb', p.data.coverFit]}>
+                <Image src={p.data.cover} alt="" widths={[400, 800]} sizes="(min-width: 900px) 400px, 100vw" />
+              </div>
+              <div class="row">
+                {p.data.logo && <Image class="logo" src={p.data.logo} alt="" width={40} height={40} />}
+                <b>{p.data.title}</b>
+                <span class:list={['status', p.data.status]}>{p.data.year}</span>
+              </div>
+              <p>
+                {p.data.tagline}
+                {href && <Icon name="external" class="ext" />}
+              </p>
+            </Card>
+          );
+        })
       }
     </div>
   </section>
@@ -171,7 +178,7 @@ const { featured, archive } = await getProjects();
     background: var(--bg-2);
     transition: 0.2s;
   }
-  .card:hover {
+  a.card:hover {
     border-color: var(--line-2);
     transform: translateY(-2px);
   }
@@ -185,8 +192,7 @@ const { featured, archive } = await getProjects();
   .thumb img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
-    object-position: top;
+    object-fit: contain;
   }
   .thumb.contain {
     background: white;
@@ -217,6 +223,11 @@ const { featured, archive } = await getProjects();
     margin: 8px 4px 0;
     color: var(--text-2);
     font-size: 14px;
+  }
+  .card :global(.ext) {
+    margin-left: 6px;
+    vertical-align: -2px;
+    color: var(--text-3);
   }
   @media (max-width: 900px) {
     .feature,

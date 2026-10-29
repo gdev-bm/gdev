@@ -8,7 +8,8 @@ interface Props {
 const { name, class: className } = Astro.props;
 const raw = icons[name === 'logo' ? '../assets/logo.svg' : `../icons/${name}.svg`];
 const root = raw.match(/<svg[^>]*>/)![0];
-let svg = raw.replace(root, root.replace(/\s(width|height)="[^"]*"/g, '').replace('<svg', `<svg aria-hidden="true" class="icon ${className ?? ''}"`));
+const fill = name === 'logo' || root.includes('fill=') ? '' : ' fill="currentColor"';
+let svg = raw.replace(root, root.replace(/\s(width|height)="[^"]*"/g, '').replace('<svg', `<svg aria-hidden="true" class="icon ${className ?? ''}"${fill}`));
 if (name !== 'logo') {
   svg = svg.replace(/fill="(?!none)[^"]*"/g, 'fill="currentColor"').replace(/stroke="(?!none)[^"]*"/g, 'stroke="currentColor"');
 }

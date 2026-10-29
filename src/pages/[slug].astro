@@ -7,8 +7,8 @@ import Icon from '../components/Icon.astro';
 import { getProjects, hostOf, poster, statusLabel, type Project } from '../lib/projects';
 
 export async function getStaticPaths() {
-  const { all } = await getProjects();
-  return all.map((p, i) => ({ params: { slug: p.id }, props: { p, next: all[(i + 1) % all.length] } }));
+  const { featured } = await getProjects();
+  return featured.map((p, i) => ({ params: { slug: p.id }, props: { p, next: featured[(i + 1) % featured.length] } }));
 }
 
 const { p, next } = Astro.props as { p: Project; next: Project };
