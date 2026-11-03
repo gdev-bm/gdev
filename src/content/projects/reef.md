@@ -18,6 +18,11 @@ links:
   play: https://reef.gdev.bm
   source: https://github.com/gabriel-jones/reef
 requires: WebGPU (Chrome, Edge or Safari 18+)
+seoTitle: 'Reef: a real-time Bermuda coral reef in WebGPU'
+schema:
+  type: WebApplication
+  genre: [Real-time graphics, Interactive diorama]
+  keywords: [Reef WebGPU, Bermuda coral reef, three.js ocean, FFT ocean, WebGPU demo]
 ---
 
 Reef is a diorama of a Bermuda patch reef, rendered live with three.js on WebGPU. The sun follows its true path at Bermuda's latitude, and a full moon, stars and bioluminescence take over at night.

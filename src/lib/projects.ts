@@ -24,8 +24,11 @@ export const hostOf = (url: string) => new URL(url).host.replace(/^www\./, '');
 
 export const site = {
   name: 'gdev',
+  url: 'https://gdev.bm',
+  author: 'Gabriel Jones',
   email: 'gdev.bm@icloud.com',
-  description: 'gdev is a small studio in Bermuda making games, real-time graphics and software.',
+  description:
+    'gdev is a small studio in Bermuda by Gabriel Jones, making browser games and real-time graphics: Mare, a survival horror game on the Moon, and Reef, a live WebGPU coral reef.',
   social: {
     x: 'https://x.com/gabe_bda',
     github: 'https://github.com/gabriel-jones',

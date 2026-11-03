@@ -1,10 +1,10 @@
 ---
-import { Image } from 'astro:assets';
+import { Image, getImage } from 'astro:assets';
 import { render } from 'astro:content';
 import Layout from '../layouts/Layout.astro';
 import VideoLoop from '../components/VideoLoop.astro';
 import Icon from '../components/Icon.astro';
-import { getProjects, hostOf, poster, statusLabel, type Project } from '../lib/projects';
+import { getProjects, hostOf, poster, site, statusLabel, type Project } from '../lib/projects';
 
 export async function getStaticPaths() {
   const { featured } = await getProjects();
@@ -14,9 +14,44 @@ export async function getStaticPaths() {
 const { p, next } = Astro.props as { p: Project; next: Project };
 const { Content } = await render(p);
 const d = p.data;
+
+const abs = (path: string) => new URL(path, site.url).href;
+const pageUrl = abs(`/${p.id}/`);
+const images = await Promise.all([d.cover, ...d.gallery.map((g) => g.src)].map((src) => getImage({ src, width: 1600, format: 'jpg' })));
+const jsonLd = d.schema && {
+  '@context': 'https://schema.org',
+  '@type': d.schema.type,
+  name: d.title,
+  alternateName: d.seoTitle,
+  description: d.summary,
+  url: pageUrl,
+  mainEntityOfPage: pageUrl,
+  image: images.map((i) => abs(i.src)),
+  genre: d.schema.genre,
+  keywords: d.schema.keywords.join(', '),
+  author: { '@type': 'Person', name: site.author, url: site.url, sameAs: [site.social.x, site.social.github] },
+  publisher: { '@type': 'Organization', name: site.name, url: site.url },
+  applicationCategory: d.schema.type === 'VideoGame' ? 'Game' : 'MultimediaApplication',
+  operatingSystem: 'Any (web browser)',
+  ...(d.schema.type === 'VideoGame' && { gamePlatform: 'Web browser', playMode: 'SinglePlayer' }),
+  ...(d.links.play && { installUrl: d.links.play }),
+  sameAs: [d.links.play, d.links.source].filter(Boolean),
+  offers: { '@type': 'Offer', price: 0, priceCurrency: 'USD', availability: 'https://schema.org/InStock' },
+  dateCreated: d.year,
+  ...(d.video && {
+    video: {
+      '@type': 'VideoObject',
+      name: `${d.title} gameplay`,
+      description: d.summary,
+      thumbnailUrl: abs(poster(p)!),
+      contentUrl: abs(d.video),
+      uploadDate: '2026-10-25',
+    },
+  }),
+};
 ---
 
-<Layout title={d.title} description={d.summary} image={poster(p)}>
+<Layout title={d.seoTitle ?? d.title} description={d.summary} image={poster(p)} jsonLd={jsonLd}>
   <article class="wrap">
     <a class="back label" href="/">← All work</a>
     <header>

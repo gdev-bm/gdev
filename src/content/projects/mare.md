@@ -21,6 +21,11 @@ gallery:
 links:
   play: https://mare.gdev.bm
   source: https://github.com/gabriel-jones/mare
+seoTitle: 'Mare: a base-building survival horror game on the Moon'
+schema:
+  type: VideoGame
+  genre: [Survival horror, Base building, Colony sim, Automation]
+  keywords: [Mare game, Moon base game, lunar colony game, survival horror, browser game, Three.js game]
 ---
 
 Mare is a solo colony game with an isometric camera, in the spirit of Factorio and RimWorld. You arrive on the Moon aboard a Starship with a few supplies and one mining robot, and build outwards from there.

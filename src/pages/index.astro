@@ -3,12 +3,37 @@ import { Image } from 'astro:assets';
 import Layout from '../layouts/Layout.astro';
 import VideoLoop from '../components/VideoLoop.astro';
 import Icon from '../components/Icon.astro';
-import { getProjects, poster, statusLabel } from '../lib/projects';
+import { getProjects, poster, site, statusLabel } from '../lib/projects';
 
 const { featured, archive } = await getProjects();
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    { '@type': 'WebSite', name: site.name, url: site.url, description: site.description },
+    {
+      '@type': 'Organization',
+      name: site.name,
+      url: site.url,
+      email: site.email,
+      logo: new URL('/favicon.ico', site.url).href,
+      founder: { '@type': 'Person', name: site.author, sameAs: [site.social.x, site.social.github] },
+      sameAs: [site.social.linkedin],
+    },
+    {
+      '@type': 'ItemList',
+      itemListElement: featured.map((p, i) => ({
+        '@type': 'ListItem',
+        position: i + 1,
+        url: new URL(`/${p.id}/`, site.url).href,
+        name: p.data.seoTitle ?? p.data.title,
+      })),
+    },
+  ],
+};
 ---
 
-<Layout>
+<Layout jsonLd={jsonLd}>
   <section class="wrap intro">
     <h1>Games, real-time graphics<br />and software, made in&nbsp;Bermuda.</h1>
   </section>

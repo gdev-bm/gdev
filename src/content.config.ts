@@ -27,6 +27,14 @@ const projects = defineCollection({
         })
         .default({}),
       requires: z.string().optional(),
+      seoTitle: z.string().optional(),
+      schema: z
+        .object({
+          type: z.enum(['VideoGame', 'WebApplication']),
+          genre: z.array(z.string()),
+          keywords: z.array(z.string()).default([]),
+        })
+        .optional(),
     }),
 });
 
